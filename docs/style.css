@@ -112,6 +112,10 @@ footer {
     width: 100%;
 }
 
+p {
+    margin: 20px;
+}
+
 /* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
     .coming-soon-title {
