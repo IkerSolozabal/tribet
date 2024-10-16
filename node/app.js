@@ -8,7 +8,9 @@ app.use(cors())
 
 const port = process.env.PORT || 3000
 
-app.use("/api", require("./routes/users"))
+// Mount all dynamic routes from 'routes/index.js' under the '/api' prefix.
+// For example, a 'users.js' file in 'routes' will be accessible via '/api/users'.
+app.use("/api", require("./routes"))
 
 
 app.listen(port, () => {
