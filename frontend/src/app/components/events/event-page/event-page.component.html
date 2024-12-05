@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <div class="container mt-5">
+        <app-event-card
+          *ngFor="let event of events"
+          [eventName]="event.name"
+          [location]="event.location.city"
+          [status]="event.status"
+          [startDate]="event.startDate"
+          [eventId]="event._id">
+        </app-event-card>
+      </div>
+</div>

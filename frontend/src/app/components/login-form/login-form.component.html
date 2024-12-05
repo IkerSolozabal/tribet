@@ -1,0 +1,34 @@
+<div class="container">
+  <input type="checkbox" id="check">
+  <div *ngIf="alertMessage" class="alert mt-2" [ngClass]="'alert-' + alertType" role="alert">
+    {{ alertMessage }}
+  </div>
+  <div class="login form">
+    <header>Login</header>
+    <form (ngSubmit)="login()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Introduce tu email">
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Introduce tu contraseña">
+      <input type="button" class="button" (click)="login()" value="Login">
+    </form>
+    <div class="signup">
+      <span class="signup">Registrarse?
+        <label for="check">Signup</label>
+      </span>
+    </div>
+  </div>
+
+  <div class="registration form">
+    <header>Signup</header>
+    <form (ngSubmit)="register()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Tu email">
+      <input type="text" [(ngModel)]="name" name="name" placeholder="Tu nombre">
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Crea tu contraseña">
+      <input type="button" class="button" (click)="register()" value="Signup">
+    </form>
+    <div class="signup">
+      <span class="signup">Tienes cuenta?
+        <label for="check">Login</label>
+      </span>
+    </div>
+  </div>
+</div>
