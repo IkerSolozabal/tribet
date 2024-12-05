@@ -1,3 +1,4 @@
 backend/node_modules/
 .env
 .idea/
+mongo/mongodb_data/
