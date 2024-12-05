@@ -1,8 +1,8 @@
-import { CookieHelperService } from '../../core/services/cookie/cookie.service'; 
+import { CookieHelperService } from '../../shared/services/cookie/cookie.service';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
-import { RestService } from '../../core/services/rest/rest.service';
-import { Endpoints } from '../../core/enums/endpoints.enum';
+import { RestService } from '../../shared/services/rest/rest.service';
+import { Endpoints } from '../../shared/emuns/endpoints.enum';
 import { catchError } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
@@ -38,7 +38,7 @@ export class LoginFormComponent {
       if (res) {
         // Si el login es exitoso
         this.showAlert('Inicio de sesión exitoso.', 'primary');
-        const response = res as any; 
+        const response = res as any;
         const token = response.data.token; // Asumiendo que `data.token` es la respuesta
         console.log('Token', token);
 
@@ -70,7 +70,7 @@ export class LoginFormComponent {
         // Si el registro es exitoso
         this.showAlert('Registro exitoso. Redirigiendo al login...', 'primary');
         console.log('Register success:', res);
-        
+
         // Redirige al login después de 2 segundos
         setTimeout(() => {
           window.location.href = '/login';

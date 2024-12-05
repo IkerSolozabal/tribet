@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthGuard } from '../../core/guards/auth/auth.guard';
-import { CookieHelperService } from '../../core/services/cookie/cookie.service';
+import { AuthGuard } from '../../shared/guards/auth/auth.guard';
+import { CookieHelperService } from '../../shared/services/cookie/cookie.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,7 +17,7 @@ export class HeaderComponent {
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
-  
+
   logout() {
     // Aquí eliminas el token y rediriges a la página de inicio o login
     this.cookieHelperService.deleteCookie('token');

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInfoComponent } from '../user-info/user-info.component';
-import { RestService } from '../../../core/services/rest/rest.service';
-import { CookieHelperService } from '../../../core/services/cookie/cookie.service';
-import { Endpoints } from '../../../core/enums/endpoints.enum';
+import { RestService } from '../../../shared/services/rest/rest.service';
+import { CookieHelperService } from '../../../shared/services/cookie/cookie.service';
+import { Endpoints } from '../../../shared/emuns/endpoints.enum';
 
 @Component({
   selector: 'app-user-bets-page',
@@ -22,7 +22,7 @@ export class UserBetsPageComponent implements OnInit {
   public loadUserBets() {
     this.restService.get(Endpoints.USER_BETS).subscribe(res => {
       if (res) {
-  
+
         const response = res as any;
         const bets = response.bets
         this.bets = bets

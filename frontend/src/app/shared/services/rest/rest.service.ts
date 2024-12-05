@@ -1,4 +1,4 @@
-import { CookieHelperService } from './../cookie/cookie.service';
+import { CookieHelperService } from '../cookie/cookie.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -26,12 +26,12 @@ export class RestService {
   public post(url: string, body: any) {
     // Obtener el token desde las cookies (o cualquier otro almacenamiento que estés usando)
     const token = this.cookieHelperService.getCookie('token');
-    
+
     // Crear los headers, incluyendo el Authorization
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-  
+
     // Realizamos la solicitud POST pasando el body y los headers
     return this.http.post(url, body, { headers });
   }

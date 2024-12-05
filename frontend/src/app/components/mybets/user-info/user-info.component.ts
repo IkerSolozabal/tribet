@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from '../../../core/services/rest/rest.service';
-import { CookieHelperService } from '../../../core/services/cookie/cookie.service';
-import { Endpoints } from '../../../core/enums/endpoints.enum';
+import { RestService } from '../../../shared/services/rest/rest.service';
+import { CookieHelperService } from '../../../shared/services/cookie/cookie.service';
+import { Endpoints } from '../../../shared/emuns/endpoints.enum';
 
 @Component({
   selector: 'app-user-info',

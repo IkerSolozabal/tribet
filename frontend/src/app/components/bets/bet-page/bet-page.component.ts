@@ -1,11 +1,11 @@
-import { RestService } from '../../../core/services/rest/rest.service';
+import { RestService } from '../../../shared/services/rest/rest.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CookieHelperService } from '../../../core/services/cookie/cookie.service';
-import { Endpoints } from '../../../core/enums/endpoints.enum';
+import { CookieHelperService } from '../../../shared/services/cookie/cookie.service';
+import { Endpoints } from '../../../shared/emuns/endpoints.enum';
 import { CommonModule } from '@angular/common';
 import { BetCardComponent } from '../bet-card/bet-card.component';
-import { BetService } from '../../../core/services/bet/bet.service';
+import { BetService } from '../../../shared/services/bet/bet.service';
 
 @Component({
   selector: 'app-bet-page',
@@ -17,7 +17,7 @@ import { BetService } from '../../../core/services/bet/bet.service';
 export class BetPageComponent implements OnInit {
   eventId: string | null = null;
   winnerBets: any[] = [];
-  
+
   constructor(private route: ActivatedRoute, private cookieHelperService: CookieHelperService, private restService: RestService, private betService: BetService) { }
 
   ngOnInit(): void {
@@ -31,11 +31,11 @@ export class BetPageComponent implements OnInit {
     this.restService.get(`${Endpoints.BET_PROPOSAL}/${this.eventId}`).subscribe(res => {
       if (res) {
         // Si el login es exitoso
-        const response = res as any; 
+        const response = res as any;
         const bets = response.bets
         console.log('BetOptions', bets);
         this.winnerBets = bets.winnerBets
-        
+
       }
     });
   }

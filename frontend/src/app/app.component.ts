@@ -1,4 +1,4 @@
-import { RestService } from './core/services/rest/rest.service';
+import { RestService } from './shared/services/rest/rest.service';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';

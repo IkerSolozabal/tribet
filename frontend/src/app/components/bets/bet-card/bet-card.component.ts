@@ -1,8 +1,8 @@
-import { RestService } from './../../../core/services/rest/rest.service';
+import { RestService } from '../../../shared/services/rest/rest.service';
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BetService } from '../../../core/services/bet/bet.service';
-import { Endpoints } from '../../../core/enums/endpoints.enum';
+import { BetService } from '../../../shared/services/bet/bet.service';
+import { Endpoints } from '../../../shared/emuns/endpoints.enum';
 
 @Component({
   selector: 'app-bet-card',
@@ -36,7 +36,7 @@ export class BetCardComponent {
     const betAmount = (document.getElementById('bet-amount') as HTMLInputElement).value;
     if (isNaN(Number(betAmount)) || Number(betAmount) <= 0) {
       console.error("La cantidad apostada no es válida. Debe ser un número mayor que 0.");
-    } else { 
+    } else {
       console.log("Apuesta correcta", this.bet)
       this.placeBets(Number(betAmount))
     }

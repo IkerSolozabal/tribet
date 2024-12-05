@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { AuthGuard } from './core/guards/auth/auth.guard';
+import { AuthGuard } from './shared/guards/auth/auth.guard';
 import { EventPageComponent } from './components/events/event-page/event-page.component';
 import { BetPageComponent } from './components/bets/bet-page/bet-page.component';
 import { UserBetsPageComponent } from './components/mybets/user-bets-page/user-bets-page.component';
