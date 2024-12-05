@@ -2,7 +2,7 @@ import { RestService } from './shared/services/rest/rest.service';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 
 @Component({

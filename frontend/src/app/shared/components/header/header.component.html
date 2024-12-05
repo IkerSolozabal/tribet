@@ -1,0 +1,8 @@
+<!-- Header para cuando el usuario no está logueado -->
+<app-header-not-logged-in *ngIf="!isAuthenticated"></app-header-not-logged-in>
+
+<!-- Header para cuando el usuario está logueado como "usuario" -->
+<app-header-logged-in *ngIf="isAuthenticated && userRole === UserRoles.USER"></app-header-logged-in>
+
+<!-- Header para cuando el usuario está logueado como "administrador" -->
+<app-header-admin *ngIf="isAuthenticated && userRole === UserRoles.ADMIN"></app-header-admin>

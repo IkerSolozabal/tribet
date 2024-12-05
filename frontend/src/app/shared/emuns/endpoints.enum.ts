@@ -8,3 +8,8 @@ export enum Endpoints {
     USER_BETS = `${Endpoints.BASE_URL}/account/bets`,
     PLACE_BET = `${Endpoints.BASE_URL}/bets`
 }
+
+export enum UserRoles {
+  USER = 'user',
+  ADMIN = 'admin'
+}

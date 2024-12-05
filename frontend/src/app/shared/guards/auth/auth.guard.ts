@@ -4,6 +4,7 @@ import { CookieHelperService } from '../../services/cookie/cookie.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import {UserRoles} from '../../emuns/endpoints.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,29 @@ export class AuthGuard implements CanActivate {
     return !isTokenExpired;
   }
 
-  canActivate(): boolean {
-    
+  getUserRole(): UserRoles | null {
+    const token = this.cookieHelperService.getCookie('token');
 
+    if (!token || !this.isAuthenticated()) {
+      return null; // Si no está autenticado, no tiene un rol
+    }
+
+    const jwtHelper = new JwtHelperService();
+    const decodedToken = jwtHelper.decodeToken(token); // Decodificar el token
+
+    // Verificar si el token contiene el campo `role` (esto depende de cómo esté estructurado tu JWT)
+    const role = decodedToken?.role; // O cualquier otro nombre que uses en el payload
+
+    if (role === 'admin') {
+      return UserRoles.ADMIN;
+    } else if (role === 'user') {
+      return UserRoles.USER;
+    }
+
+    return null; // Si no tiene un rol válido
+  }
+
+  canActivate(): boolean {
     // Si no hay token, redirigir al login
     if (!this.isAuthenticated()) {
       this.redirectToLogin();  // Llama a la función para redirigir

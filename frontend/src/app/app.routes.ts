@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
+import {AdminHomeComponent} from './views/admin/admin-home/admin-home.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
-import {LandingComponent} from './components/landing/landing.component';
+import {LandingComponent} from './views/normal/landing/landing.component';
 import {AuthGuard} from './shared/guards/auth/auth.guard';
 import {EventPageComponent} from './components/events/event-page/event-page.component';
 import {BetPageComponent} from './components/bets/bet-page/bet-page.component';
@@ -9,7 +10,11 @@ import {UserBetsPageComponent} from './components/mybets/user-bets-page/user-bet
 export const routes: Routes = [
   {
     path: '',
-    component: LoginFormComponent
+    component: LandingComponent
+  },
+  {
+    path: 'admin',
+    component: AdminHomeComponent
   },
   {
     path: 'login',
