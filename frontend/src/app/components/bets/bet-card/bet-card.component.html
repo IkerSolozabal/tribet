@@ -1,0 +1,56 @@
+<div class="bet-card">
+  <div class="bet-type">
+    <strong>Tipo de apuesta:</strong> {{ bet.betType }}
+  </div>
+  <div class="participant">
+    <strong>Participante:</strong> {{ bet.participant.name }}
+  </div>
+  <div class="status">
+    <strong>Estado:</strong> {{ bet.status }}
+  </div>
+  <div class="odds">
+    <strong>Cuota:</strong> {{ bet.odds }}
+  </div>
+  
+  <!-- Botón de Apostar -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#betModal" (click)="selectBet(bet)">
+    Apostar
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="betModal" tabindex="-1" aria-labelledby="betModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="betModalLabel">Realiza tu apuesta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Mostrar datos de la apuesta seleccionada -->
+        <form *ngIf="selectedBet">
+          <div class="mb-3">
+            <label for="bet-amount" class="col-form-label">Cantidad a apostar:</label>
+            <input type="number" class="form-control" id="bet-amount" placeholder="Ingresa el monto" min="1" required>
+          </div>
+          <div class="mb-3">
+            <label for="bet-type" class="col-form-label">Tipo de apuesta:</label>
+            <input type="text" class="form-control" id="bet-type" [value]="selectedBet?.betType" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="bet-type" class="col-form-label">Apuesta</label>
+            <input type="text" class="form-control" id="bet-type" [value]="selectedBet?.participant.name" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="bet-odds" class="col-form-label">Cuota:</label>
+            <input type="text" class="form-control" id="bet-odds" [value]="selectedBet?.odds" disabled>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="placeBet()">Apostar</button>
+      </div>
+    </div>
+  </div>
+</div>

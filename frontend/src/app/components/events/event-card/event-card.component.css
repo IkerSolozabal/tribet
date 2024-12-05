@@ -1,0 +1,46 @@
+.event-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-header {
+    background: linear-gradient(135deg, #009579, #005f4f);
+    color: #fff;
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.event-body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.event-info {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.event-info strong {
+    color: #009579;
+}
+
+.event-footer {
+    text-align: center;
+    padding: 10px;
+    background: #009579;
+    color: #fff;
+    border-top: 1px solid #005f4f;
+}
+
+.futuristic-detail {
+    font-family: 'Courier New', Courier, monospace;
+    color: #2b2d42;
+}

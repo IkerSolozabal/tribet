@@ -1,0 +1,46 @@
+/* Estilos personalizados para las tarjetas de usuario */
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .card-footer .btn {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card-footer .btn:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .container {
+    margin-top: 40px;
+  }
+  

@@ -1,0 +1,35 @@
+.bet-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bet-card div {
+    margin-bottom: 8px;
+  }
+  
+  .bet-card strong {
+    color: #333;
+  }
+  
+  .bet-type {
+    font-size: 1.2em;
+    color: #007bff;
+  }
+  
+  .participant {
+    font-size: 1.1em;
+  }
+  
+  .status {
+    color: #28a745;
+  }
+  
+  .odds {
+    font-weight: bold;
+    color: #dc3545;
+  }
+  

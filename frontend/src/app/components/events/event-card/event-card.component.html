@@ -1,0 +1,13 @@
+<div class="card event-card">
+    <div class="event-header">
+      {{ eventName }}
+    </div>
+    <div class="card-body event-body">
+      <p class="event-info"><strong>Ubicación:</strong> {{ location }}</p>
+      <p class="event-info"><strong>Estado:</strong> {{ status }}</p>
+      <p class="event-info"><strong>Fecha:</strong> {{ startDate | date:'dd/MM/yyyy' }}</p>
+    </div>
+    <div class="event-footer">
+        <button type="button" class="btn btn-secondary" (click)="redirectToEventBet()">APOSTAR</button>
+    </div>
+  </div>
