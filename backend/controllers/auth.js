@@ -13,8 +13,7 @@ const register = async (req, res) => {
         const passwordHashed = await encrypt(validData.password);
 
         // Crear el cuerpo del usuario con la contraseña encriptada
-        const userData = { ...validData, password: passwordHashed };
-
+        const userData = { ...validData,email: validData.email.toLowerCase(), password: passwordHashed };
         // Crear el nuevo usuario en la base de datos
         const createdUser = await usersModel.create(userData);
 
@@ -35,7 +34,7 @@ const login = async (req, res) => {
         const validData = matchedData(req);
 
         // Find the user by email and select relevant fields
-        const user = await usersModel.findOne({ email: validData.email })
+        const user = await usersModel.findOne({ email: validData.email.toLowerCase() })
             .select('password name role email balance');
 
         // Check if the user exists
