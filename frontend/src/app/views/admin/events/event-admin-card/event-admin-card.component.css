@@ -1,0 +1,49 @@
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #4a90e2, #357ab7); /* Cambié los colores para adaptarlos a un tema de evento */
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-text {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.card-text strong {
+  color: #4a90e2; /* Coloca un color azul para los títulos */
+}
+
+.btn-secondary {
+  background-color: #357ab7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #4a90e2;
+}

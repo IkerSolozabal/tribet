@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="container">
+    <app-event-admin-card
+      *ngFor="let event of events"
+      [eventName]="event.name"
+      [location]="event.location.city"
+      [status]="event.status"
+      [startDate]="event.startDate"
+      [eventId]="event._id">
+    </app-event-admin-card>
+  </div>
+</div>

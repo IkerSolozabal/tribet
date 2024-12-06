@@ -1,0 +1,11 @@
+<div class="card">
+  <h5 class="card-header">Event Information</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ eventName }}</h5> <!-- Nombre del evento -->
+    <p class="card-text"><strong>Location:</strong> {{ location }}</p> <!-- Ubicación del evento -->
+    <p class="card-text"><strong>Status:</strong> {{ status }}</p> <!-- Estado del evento -->
+    <p class="card-text"><strong>Start Date:</strong> {{ startDate | date:'long' }}</p> <!-- Fecha de inicio del evento -->
+    <p class="card-text"><strong>Event ID:</strong> {{ eventId }}</p> <!-- ID del evento -->
+    <a href="#" class="btn btn-secondary">Editar</a> <!-- Botón de acción -->
+  </div>
+</div>

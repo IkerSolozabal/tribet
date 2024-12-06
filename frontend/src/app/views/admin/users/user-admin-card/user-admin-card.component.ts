@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {DatePipe, UpperCasePipe, CommonModule} from '@angular/common';
+import {DatePipe, UpperCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-user-admin-card',
