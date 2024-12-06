@@ -6,6 +6,7 @@ import {AuthGuard} from './shared/guards/auth/auth.guard';
 import {EventPageComponent} from './components/events/event-page/event-page.component';
 import {BetPageComponent} from './components/bets/bet-page/bet-page.component';
 import {UserBetsPageComponent} from './components/mybets/user-bets-page/user-bets-page.component';
+import {UserRoles} from './shared/emuns/endpoints.enum';
 
 export const routes: Routes = [
   {
@@ -14,7 +15,9 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [UserRoles.ADMIN]}
   },
   {
     path: 'login',
@@ -27,16 +30,19 @@ export const routes: Routes = [
   {
     path: 'events',
     component: EventPageComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: [UserRoles.ADMIN]}
   },
   {
     path: 'mybets',
     component: UserBetsPageComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: [UserRoles.USER]},
   },
   {
     path: 'events/:eventId',
     component: BetPageComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: [UserRoles.USER]}
   }
 ];

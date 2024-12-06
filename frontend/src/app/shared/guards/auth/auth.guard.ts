@@ -1,9 +1,8 @@
-
-import { CanActivate } from '@angular/router';
-import { CookieHelperService } from '../../services/cookie/cookie.service';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import {CanActivate, ActivatedRouteSnapshot} from '@angular/router';
+import {CookieHelperService} from '../../services/cookie/cookie.service';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {JwtHelperService} from '@auth0/angular-jwt';
 import {UserRoles} from '../../emuns/endpoints.enum';
 
 @Injectable({
@@ -14,11 +13,8 @@ export class AuthGuard implements CanActivate {
   constructor(
     private cookieHelperService: CookieHelperService,
     private router: Router  // Inyecta Router en el constructor
-  ) { }
-
-
-
-  // Asegúrate de instalar la librería si no lo has hecho
+  ) {
+  }
 
   isAuthenticated(): boolean {
     const token = this.cookieHelperService.getCookie('token');
@@ -56,21 +52,20 @@ export class AuthGuard implements CanActivate {
       return UserRoles.USER;
     }
 
-    return null; // Si no tiene un rol válido
+    return null;
   }
 
-  canActivate(): boolean {
-    // Si no hay token, redirigir al login
-    if (!this.isAuthenticated()) {
-      this.redirectToLogin();  // Llama a la función para redirigir
-      return false;  // Evita que la ruta se active
+  canActivate(
+    route: ActivatedRouteSnapshot
+  ): boolean {
+    const expectedRoles = route.data['roles'] as Array<UserRoles>; // Los roles esperados (ahora usando el enum)
+    const userRole = this.getUserRole() as UserRoles; // Asegúrate de que el servicio devuelva un valor compatible con el enum
+
+    if (expectedRoles.includes(userRole)) {
+      return true; // El usuario tiene acceso
+    } else {
+      this.router.navigate(['/unauthorized']); // Redirigir si no tiene acceso
+      return false;
     }
-
-    return true;  // Permite el acceso a la ruta
-  }
-
-  // Función para redirigir al login
-  private redirectToLogin() {
-    this.router.navigate(['/login']);  // Redirige a la página de login
   }
 }
