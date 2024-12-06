@@ -1,11 +1,55 @@
 <div class="card">
   <h5 class="card-header">Event Information</h5>
   <div class="card-body">
-    <h5 class="card-title">{{ eventName }}</h5> <!-- Nombre del evento -->
-    <p class="card-text"><strong>Location:</strong> {{ location }}</p> <!-- Ubicación del evento -->
-    <p class="card-text"><strong>Status:</strong> {{ status }}</p> <!-- Estado del evento -->
-    <p class="card-text"><strong>Start Date:</strong> {{ startDate | date:'long' }}</p> <!-- Fecha de inicio del evento -->
-    <p class="card-text"><strong>Event ID:</strong> {{ eventId }}</p> <!-- ID del evento -->
-    <a href="#" class="btn btn-secondary">Editar</a> <!-- Botón de acción -->
+    <h5 class="card-title">{{ event.eventName }}</h5> <!-- Nombre del evento -->
+    <p class="card-text"><strong>Location:</strong> {{ event.location.city }}</p> <!-- Ubicación del evento -->
+    <p class="card-text"><strong>Status:</strong> {{ event.status }}</p> <!-- Estado del evento -->
+    <p class="card-text"><strong>Start Date:</strong> {{ event.startDate | date:'long' }}</p> <!-- Fecha de inicio del evento -->
+    <p class="card-text"><strong>Event ID:</strong> {{ event._id }}</p> <!-- ID del evento -->
+    <p class="card-text"><strong>Tags</strong> {{ event.tags }}</p> <!-- ID del evento -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal" (click)="selectEvent(event)">
+      Editar
+    </button>
   </div>
 </div>
+
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Detalles del Evento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Mostrar datos del evento seleccionado -->
+        <form *ngIf="selectedEvent">
+          <div class="mb-3">
+            <label for="event-name" class="col-form-label">Nombre del Evento:</label>
+            <input type="text" class="form-control" id="event-name" [value]="selectedEvent?.name">
+          </div>
+          <div class="mb-3">
+            <label for="event-location" class="col-form-label">Ubicación:</label>
+            <input type="text" class="form-control" id="event-location" [value]="selectedEvent?.location.city">
+          </div>
+          <div class="mb-3">
+            <label for="event-status" class="col-form-label">Estado:</label>
+            <input type="text" class="form-control" id="event-status" [value]="selectedEvent?.status">
+          </div>
+          <div class="mb-3">
+            <label for="event-start-date" class="col-form-label">Fecha de Inicio:</label>
+            <input type="text" class="form-control" id="event-start-date" [value]="selectedEvent?.startDate | date:'short'">
+          </div>
+          <div class="mb-3">
+            <label for="event-tags" class="col-form-label">tags</label>
+            <input type="text" class="form-control" id="event-tags" [value]="selectedEvent?.tags">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Acción</button>
+      </div>
+    </div>
+  </div>
+</div>
+

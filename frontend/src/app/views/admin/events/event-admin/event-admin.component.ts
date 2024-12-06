@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {RestService} from '../../../../shared/services/rest/rest.service';
 import {CookieHelperService} from '../../../../shared/services/cookie/cookie.service';
 import {Endpoints} from '../../../../shared/emuns/endpoints.enum';
-import {NgForOf} from '@angular/common';
+import {CommonModule, NgForOf} from '@angular/common';
 import {UserAdminCardComponent} from '../../users/user-admin-card/user-admin-card.component';
 import {EventAdminCardComponent} from '../event-admin-card/event-admin-card.component';
+import {EventService} from '../../../../shared/services/event/event.service';
+import {BetCardComponent} from '../../../../components/bets/bet-card/bet-card.component';
 
 @Component({
   selector: 'app-event-admin',
@@ -12,7 +14,9 @@ import {EventAdminCardComponent} from '../event-admin-card/event-admin-card.comp
   imports: [
     NgForOf,
     UserAdminCardComponent,
-    EventAdminCardComponent
+    EventAdminCardComponent,
+    BetCardComponent,
+    CommonModule
   ],
   templateUrl: './event-admin.component.html',
   styleUrl: './event-admin.component.css'
