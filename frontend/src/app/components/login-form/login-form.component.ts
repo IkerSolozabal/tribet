@@ -47,7 +47,7 @@ export class LoginFormComponent {
 
         // Redirige al home después de 2 segundos
         setTimeout(() => {
-          window.location.href = '/home';
+          window.location.href = '/admin';
         }, 2000);
       }
     });

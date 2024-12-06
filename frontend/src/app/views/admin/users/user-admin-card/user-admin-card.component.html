@@ -1,0 +1,16 @@
+<div class="user-card">
+  <div class="user-header">
+    <h2>{{ name }}</h2>
+    <p class="user-role">{{ role | uppercase }}</p>
+  </div>
+  <div class="user-body">
+    <div class="user-info">
+      <p><strong>Email:</strong> {{ email }}</p>
+      <p><strong>Balance:</strong> ${{ balance }}</p>
+      <p><strong>Created At:</strong> {{ createdAt | date: 'shortDate' }}</p>
+    </div>
+  </div>
+  <div class="user-footer">
+    <button class="btn btn-primary">View Details</button>
+  </div>
+</div>
