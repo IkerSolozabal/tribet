@@ -1,4 +1,4 @@
-const { check } = require("express-validator");
+const {check} = require("express-validator");
 const validateResults = require("../utils/handlerValidator")
 
 const validatorRegister = [
@@ -29,4 +29,4 @@ const validatorLogin = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorRegister, validatorLogin }
+module.exports = {validatorRegister, validatorLogin}
