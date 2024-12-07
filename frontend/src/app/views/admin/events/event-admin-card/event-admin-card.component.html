@@ -1,39 +1,30 @@
-<!-- Event Card -->
-<div class="card p-4 shadow-lg rounded">
-  <!-- Event Header -->
+<div class="card-body">
+  <!-- Event Name and Location -->
   <div class="mb-3">
-    <h5 class="card-header bg-primary text-white rounded-top">Event Information</h5>
+    <h5 class="fw-bold mb-2">{{ event.name }}</h5>
+    <p class="text-muted mb-2">{{ event.location.venue }} {{ event.location.city }}</p>
   </div>
 
-  <!-- Event Content -->
-  <div class="card-body">
-    <!-- Event Name and Location -->
-    <div class="mb-3">
-      <h5 class="fw-bold mb-2">{{ event.eventName }}</h5>
-      <p class="text-muted mb-2"><strong>Location:</strong> {{ event.location.city }}</p>
-    </div>
+  <!-- Event Status and Start Date -->
+  <div class="d-flex justify-content-between mb-3">
+    <p class="card-text mb-0">{{ event.status }}</p>
+    <p class="card-text mb-0">{{ event.startDate | date:'fullDate' }}</p>
+  </div>
 
-    <!-- Event Status and Start Date -->
-    <div class="d-flex justify-content-between mb-3">
-      <p class="card-text mb-0"><strong>Status:</strong> {{ event.status }}</p>
-      <p class="card-text mb-0"><strong>Start Date:</strong> {{ event.startDate | date:'long' }}</p>
-    </div>
+  <div class="mb-3">
+    <span *ngFor="let tag of event.tags; let i = index" class="badge bg-secondary me-2">
+      {{ tag }}
+    </span>
+  </div>
 
-    <!-- Event ID and Tags -->
-    <div class="d-flex justify-content-between mb-3">
-      <p class="card-text mb-0"><strong>Event ID:</strong> {{ event._id }}</p>
-      <p class="card-text mb-0"><strong>Tags:</strong> {{ event.tags }}</p>
-    </div>
-
-    <!-- Edit Button -->
-    <div class="d-flex justify-content-end">
-      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#eventModal" (click)="selectEvent(event)">
-        Editar
-      </button>
-    </div>
+  <!-- Edit Button -->
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#eventModal"
+            (click)="selectEvent(event)">
+      Editar
+    </button>
   </div>
 </div>
-
 
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -67,7 +58,8 @@
           </div>
           <div class="mb-3">
             <label for="event-start-date" class="col-form-label">Fecha de Inicio:</label>
-            <input type="text" class="form-control" id="event-start-date" [value]="selectedEvent?.startDate | date:'short'">
+            <input type="text" class="form-control" id="event-start-date"
+                   [value]="selectedEvent?.startDate | date:'short'">
           </div>
           <div class="mb-3">
             <label for="event-tags" class="col-form-label">tags</label>
