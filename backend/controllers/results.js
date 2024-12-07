@@ -37,9 +37,10 @@ const getItems = async (eventId, res) => {
 const diableResult = async (eventId, res) => {
     try {
         const result = await resultModel.findOne({event: eventId});
+
         if (result) {
-            result.status = ResultStatusEnum.CLOSED; // Actualizas el campo 'status' a 'CLOSED'
-            await result.save(); // Guardas el cambio en la base de datos
+            result.status = ResultStatusEnum.CANCELED;
+            await result.save();
         }
     } catch (error) {
         return handleHttpError(res, 'ERROR_DISABLE_RESULT', 500, e);

@@ -15,7 +15,8 @@ const BetProposalStatusEnum = {
 
 const ResultStatusEnum = {
     OPEN: 'open',
-    CLOSED: 'closed'
+    CLOSED: 'closed',
+    CANCELED: 'canceled'
 };
 
 const UserBetStatusEnum = Object.freeze({

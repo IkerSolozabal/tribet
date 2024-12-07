@@ -27,7 +27,7 @@ const validatorCreateEvent = [
 ];
 
 const validatorGetEvent = [
-    check("id").exists().notEmpty().isMongoId(),
+    check("eventId").exists().notEmpty().isMongoId(),
     (req, res, next) => validateResults(req, res, next)
 ];
 
