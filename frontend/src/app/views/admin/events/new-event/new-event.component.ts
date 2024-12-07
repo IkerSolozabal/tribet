@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {EventLocations, EventsTagsEmun, EventStatusEnum} from '../../../../shared/emuns/endpoints.enum';
+import {EventLocations, EventTagsEmun} from '../../../../shared/emuns/endpoints.enum';
 import {FormsModule} from '@angular/forms';
 import {CommonModule, NgForOf} from '@angular/common';
 
@@ -15,7 +15,7 @@ import {CommonModule, NgForOf} from '@angular/common';
 })
 export class NewEventComponent {
   eventLocations: string[] = Object.values(EventLocations) as string[];
-  eventsTagsEmun: string[] = Object.values(EventsTagsEmun) as string[];
+  eventTagsEmun: string[] = Object.values(EventTagsEmun) as string[];
 
   tags: string[] = []; // Array para almacenar los tags
   newTag: string = ''; // Variable para el nuevo tag

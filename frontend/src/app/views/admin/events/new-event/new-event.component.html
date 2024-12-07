@@ -31,8 +31,12 @@
       <div class="mb-3">
         <label for="eventTags" class="col-form-label fw-bold">Tags:</label>
         <div class="input-group">
-          <input type="text" class="form-control" id="eventTags" name="tags" [(ngModel)]="newTag" (keydown.enter)="addTag()" placeholder="Agregar tag">
-          <button type="button" class="btn btn-outline-primary" (click)="addTag()">Agregar</button>
+          <select class="form-select" [(ngModel)]="newTag" name="tags" (change)="addTag()" id="eventTags">
+            <option value="" disabled selected>Seleccione un tag</option>
+            <option *ngFor="let tag of eventTagsEmun | keyvalue" [value]="tag.value">
+              {{ tag.value }}
+            </option>
+          </select>
         </div>
         <div class="mt-2">
           <span *ngFor="let tag of tags; let i = index" class="badge bg-secondary me-2">

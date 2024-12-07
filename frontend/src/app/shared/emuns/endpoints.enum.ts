@@ -29,7 +29,7 @@ export const EventStatusEnum = {
   FINISHED: 'finished'
 };
 
-export const EventsTagsEmun = {
+export const EventTagsEmun = {
   TRIATLON: 'triatlon',
   DUATLON: 'duatlon',
   SPRINT: 'sprint',
