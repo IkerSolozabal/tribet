@@ -7,13 +7,6 @@ import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs';
 
-interface Event {
-  name: undefined;
-  location: { venue: any; city: any };
-  startDate: undefined;
-  tags: string[] | undefined
-}
-
 @Component({
   selector: 'app-new-event',
   standalone: true,
@@ -90,7 +83,6 @@ export class NewEventComponent {
 
 // Método para cancelar el formulario
   cancelForm() {
-    console.log('Formulario cancelado');
-    // Aquí puedes hacer lo que sea necesario, como resetear el formulario o redirigir
+    this.router.navigate(['/admin/events']);
   }
 }
