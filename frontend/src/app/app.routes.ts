@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {AdminHomeComponent} from './views/admin/admin-home/admin-home.component';
-import {LoginFormComponent} from './components/login-form/login-form.component';
+import {LoginFormComponent} from './views/normal/login-form/login-form.component';
 import {LandingComponent} from './views/normal/landing/landing.component';
 import {AuthGuard} from './shared/guards/auth/auth.guard';
 import {EventPageComponent} from './components/events/event-page/event-page.component';

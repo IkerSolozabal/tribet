@@ -1,11 +1,12 @@
-import { CookieHelperService } from '../../shared/services/cookie/cookie.service';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
-import { RestService } from '../../shared/services/rest/rest.service';
-import { Endpoints } from '../../shared/emuns/endpoints.enum';
-import { catchError } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
-import { of } from 'rxjs';
+import {CookieHelperService} from '../../../shared/services/cookie/cookie.service';
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms'; // Importa FormsModule
+import {RestService} from '../../../shared/services/rest/rest.service';
+import {Endpoints, UserRoles} from '../../../shared/emuns/endpoints.enum';
+import {catchError} from 'rxjs/operators';
+import {CommonModule} from '@angular/common';
+import {of} from 'rxjs';
+import {AuthGuard} from '../../../shared/guards/auth/auth.guard';
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent {
   alertMessage: string | null = null; // Mensaje de alerta
   alertType: 'primary' | 'danger' = 'primary'; // Tipo de alerta ('primary', 'danger', etc.)
 
-  constructor(private restService: RestService, private cookieHelperService: CookieHelperService) {}
+  constructor(private restService: RestService, private cookieHelperService: CookieHelperService, private authGuard: AuthGuard) {
+  }
 
   public login() {
     this.restService.post(Endpoints.LOGIN, {
@@ -40,15 +42,20 @@ export class LoginFormComponent {
         this.showAlert('Inicio de sesión exitoso.', 'primary');
         const response = res as any;
         const token = response.data.token; // Asumiendo que `data.token` es la respuesta
-        console.log('Token', token);
-
-        // Guarda el token en una cookie (habilita la línea de abajo si es necesario)
         this.cookieHelperService.setCookie('token', token);
+        console.log('Token', token);
+        let role: UserRoles | null = this.authGuard.getUserRole()
 
-        // Redirige al home después de 2 segundos
-        setTimeout(() => {
-          window.location.href = '/admin';
-        }, 2000);
+        if (role == UserRoles.USER) {
+          setTimeout(() => {
+            window.location.href = '/user';
+          }, 300);
+        }
+        if (role == UserRoles.ADMIN) {
+          setTimeout(() => {
+            window.location.href = '/admin';
+          }, 300);
+        }
       }
     });
   }
@@ -70,7 +77,6 @@ export class LoginFormComponent {
         // Si el registro es exitoso
         this.showAlert('Registro exitoso. Redirigiendo al login...', 'primary');
         console.log('Register success:', res);
-
         // Redirige al login después de 2 segundos
         setTimeout(() => {
           window.location.href = '/login';
