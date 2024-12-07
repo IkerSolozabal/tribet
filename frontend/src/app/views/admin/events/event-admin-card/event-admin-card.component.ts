@@ -2,7 +2,7 @@ import {Component, input, Input} from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
 import {EventService} from '../../../../shared/services/event/event.service';
 import {EventLocations, EventStatusEnum} from '../../../../shared/emuns/endpoints.enum';
-import { FormsModule } from '@angular/forms'; //
+import {FormsModule} from '@angular/forms'; //
 
 
 @Component({
