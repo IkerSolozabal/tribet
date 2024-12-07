@@ -1,6 +1,8 @@
 import {Component, input, Input} from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
 import {EventService} from '../../../../shared/services/event/event.service';
+import {EventLocations, EventStatusEnum} from '../../../../shared/emuns/endpoints.enum';
+import { FormsModule } from '@angular/forms'; //
 
 
 @Component({
@@ -8,13 +10,16 @@ import {EventService} from '../../../../shared/services/event/event.service';
   standalone: true,
   imports: [
     DatePipe,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './event-admin-card.component.html',
   styleUrl: './event-admin-card.component.css'
 })
 export class EventAdminCardComponent {
   @Input() event: any;
+  eventLocations: string[] = Object.values(EventLocations) as string[];
+  eventStatusEnum: string[] = Object.values(EventStatusEnum) as string[];
 
   constructor(private eventService: EventService) {
   }
@@ -27,4 +32,6 @@ export class EventAdminCardComponent {
   get selectedEvent() {
     return this.eventService.getSelectedEvent()
   }
+
+  protected readonly EventLocations = EventLocations;
 }

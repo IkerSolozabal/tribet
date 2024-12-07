@@ -14,3 +14,19 @@ export enum UserRoles {
   USER = 'user',
   ADMIN = 'admin'
 }
+
+export enum EventLocations {
+  MADRID = 'Madrid',        // Nueva ubicación
+  VALENCIA = 'Valencia',    // Nueva ubicación
+  TENERIFE = 'Tenerife',    // Nueva ubicación
+  RIVAS = 'Rivas',          // Nueva ubicación
+  PARQUE_WARNER = 'Parque Warner'
+}
+
+export const EventStatusEnum = {
+  SCHEDULED: 'scheduled',
+  IN_PROGRESS: 'in_progress',
+  FINISHED: 'finished'
+};
+
+

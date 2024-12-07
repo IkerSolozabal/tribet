@@ -29,7 +29,15 @@
           </div>
           <div class="mb-3">
             <label for="event-location" class="col-form-label">Ubicación:</label>
-            <input type="text" class="form-control" id="event-location" [value]="selectedEvent?.location.city">
+            <select
+              class="form-select"
+              id="event-location"
+              [(ngModel)]="selectedEvent.location.city">
+              <option value="" disabled selected> {{ selectedEvent.location.city}}</option>
+              <option *ngFor="let location of eventLocations" [value]="location">
+                {{ location }}
+              </option>
+            </select>
           </div>
           <div class="mb-3">
             <label for="event-status" class="col-form-label">Estado:</label>
