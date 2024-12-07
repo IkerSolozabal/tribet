@@ -10,7 +10,7 @@ const isFutureDate = (value) => {
     return true;
 };
 
-const validatorCreateItem = [
+const validatorCreateEvent = [
     check("name").exists().notEmpty().withMessage("Event name is required"),
     check("startDate").exists().notEmpty().isISO8601().withMessage("Valid start date is required").custom(isFutureDate),
     check("location.city").optional().isString().withMessage("City must be a string"),
@@ -26,9 +26,9 @@ const validatorCreateItem = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-const validatorGetItem = [
+const validatorGetEvent = [
     check("id").exists().notEmpty().isMongoId(),
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorCreateItem, validatorGetItem }
+module.exports = { validatorCreateEvent, validatorGetEvent }
