@@ -7,7 +7,7 @@ import {UserAdminCardComponent} from '../../users/user-admin-card/user-admin-car
 import {EventAdminCardComponent} from '../event-admin-card/event-admin-card.component';
 import {EventService} from '../../../../shared/services/event/event.service';
 import {BetCardComponent} from '../../../../components/bets/bet-card/bet-card.component';
-import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-event-admin',
@@ -17,21 +17,23 @@ import {FormsModule} from '@angular/forms';
     UserAdminCardComponent,
     EventAdminCardComponent,
     BetCardComponent,
-    CommonModule,
-    FormsModule
+    CommonModule
   ],
   templateUrl: './event-admin.component.html',
   styleUrl: './event-admin.component.css'
 })
 export class EventAdminComponent implements OnInit {
   events: any[] = [];
-  eventLocations: string[] = Object.values(EventLocations) as string[];
-  eventStatusEnum: string[] = Object.values(EventStatusEnum) as string[];
-  constructor(private restService: RestService, private cookieHelperService: CookieHelperService) {
+
+  constructor(private restService: RestService, private cookieHelperService: CookieHelperService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.loadEvents()
+  }
+
+  goToNewEvent() {
+    this.router.navigate(['/admin/events/new']);
   }
 
   public loadEvents() {

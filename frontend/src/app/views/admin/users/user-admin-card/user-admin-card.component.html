@@ -1,29 +1,31 @@
 <!-- User Card -->
-<div class="card p-3 shadow-sm">
-  <!-- Name and Email -->
-  <div>
-    <h5 class="fw-bold">{{ name }}</h5>
-    <p class="text-muted">{{ email }}</p>
-  </div>
+<div class="card p-3 shadow-sm rounded">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <!-- Name and Email -->
+    <div>
+      <h5 class="fw-bold mb-1">{{ name }}</h5>
+      <p class="text-muted mb-1">{{ email }}</p>
+    </div>
 
-  <!-- Role at the top-right -->
-  <div class="d-flex justify-content-between">
+    <!-- Role Badge -->
     <span class="badge bg-primary">{{ role }}</span>
   </div>
 
-  <!-- Account Balance -->
-  <div class="">
-    <h6 class="fw-bold">€ {{ balance }}</h6>
-  </div>
+  <div class="d-flex justify-content-between align-items-center">
+    <!-- Account Balance (right aligned) -->
+    <div class="text-end">
+      <h6 class="fw-bold text-success">€ {{ balance }}</h6>
+    </div>
 
-  <div class="">
-    <p class="text-muted mb-1">Registrado el:</p>
-    <p class="fw-light">{{ createdAt | date:'short' }}</p>
+    <!-- Account Creation Date (right aligned) -->
+    <div class="text-end">
+      <p class="text-muted mb-1">Registrado el:</p>
+      <p class="fw-light">{{ createdAt | date:'longDate' }}</p>
+    </div>
   </div>
 
   <!-- Edit Button -->
-  <div class="d-flex justify-content-end">
-    <button class="btn btn-outline-primary">Editar</button>
+  <div class="d-flex justify-content-end mt-3">
+    <button class="btn btn-outline-primary btn-sm">Editar</button>
   </div>
 </div>
-

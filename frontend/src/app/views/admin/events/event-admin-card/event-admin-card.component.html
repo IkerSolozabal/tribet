@@ -1,17 +1,39 @@
-<div class="card">
-  <h5 class="card-header">Event Information</h5>
+<!-- Event Card -->
+<div class="card p-4 shadow-lg rounded">
+  <!-- Event Header -->
+  <div class="mb-3">
+    <h5 class="card-header bg-primary text-white rounded-top">Event Information</h5>
+  </div>
+
+  <!-- Event Content -->
   <div class="card-body">
-    <h5 class="card-title">{{ event.eventName }}</h5> <!-- Nombre del evento -->
-    <p class="card-text"><strong>Location:</strong> {{ event.location.city }}</p> <!-- Ubicación del evento -->
-    <p class="card-text"><strong>Status:</strong> {{ event.status }}</p> <!-- Estado del evento -->
-    <p class="card-text"><strong>Start Date:</strong> {{ event.startDate | date:'long' }}</p> <!-- Fecha de inicio del evento -->
-    <p class="card-text"><strong>Event ID:</strong> {{ event._id }}</p> <!-- ID del evento -->
-    <p class="card-text"><strong>Tags</strong> {{ event.tags }}</p> <!-- ID del evento -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal" (click)="selectEvent(event)">
-      Editar
-    </button>
+    <!-- Event Name and Location -->
+    <div class="mb-3">
+      <h5 class="fw-bold mb-2">{{ event.eventName }}</h5>
+      <p class="text-muted mb-2"><strong>Location:</strong> {{ event.location.city }}</p>
+    </div>
+
+    <!-- Event Status and Start Date -->
+    <div class="d-flex justify-content-between mb-3">
+      <p class="card-text mb-0"><strong>Status:</strong> {{ event.status }}</p>
+      <p class="card-text mb-0"><strong>Start Date:</strong> {{ event.startDate | date:'long' }}</p>
+    </div>
+
+    <!-- Event ID and Tags -->
+    <div class="d-flex justify-content-between mb-3">
+      <p class="card-text mb-0"><strong>Event ID:</strong> {{ event._id }}</p>
+      <p class="card-text mb-0"><strong>Tags:</strong> {{ event.tags }}</p>
+    </div>
+
+    <!-- Edit Button -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#eventModal" (click)="selectEvent(event)">
+        Editar
+      </button>
+    </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
   <div class="modal-dialog">

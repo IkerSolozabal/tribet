@@ -9,6 +9,7 @@ import {UserBetsPageComponent} from './components/mybets/user-bets-page/user-bet
 import {UserRoles} from './shared/emuns/endpoints.enum';
 import {UserAdminComponent} from './views/admin/users/user-admin/user-admin.component';
 import {EventAdminComponent} from './views/admin/events/event-admin/event-admin.component';
+import {NewEventComponent} from './views/admin/events/new-event/new-event.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,12 @@ export const routes: Routes = [
   {
     path: 'admin/events',
     component: EventAdminComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [UserRoles.ADMIN]}
+  },
+  {
+    path: 'admin/events/new',
+    component: NewEventComponent,
     canActivate: [AuthGuard],
     data: {roles: [UserRoles.ADMIN]}
   },
