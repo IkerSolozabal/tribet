@@ -16,12 +16,19 @@ export enum UserRoles {
 }
 
 export enum EventLocations {
-  MADRID = 'Madrid',        // Nueva ubicación
-  VALENCIA = 'Valencia',    // Nueva ubicación
-  TENERIFE = 'Tenerife',    // Nueva ubicación
-  RIVAS = 'Rivas',          // Nueva ubicación
+  MADRID = 'Madrid',
+  VALENCIA = 'Valencia',
+  TENERIFE = 'Tenerife'
+}
+
+export enum MadridLocations {
+  JARAMA = 'Circuito RACE Rarama',
+  GUADALIX = 'San Agustin de Guadalix',
+  PINTO = 'Pinto',
+  RIVAS = 'Rivas',
   PARQUE_WARNER = 'Parque Warner'
 }
+
 
 export const EventStatusEnum = {
   SCHEDULED: 'scheduled',

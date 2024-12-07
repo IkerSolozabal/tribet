@@ -14,14 +14,22 @@
       <!-- Ubicación -->
       <div class="mb-3">
         <label for="eventLocation" class="col-form-label fw-bold">Ubicación:</label>
-        <select class="form-select" id="eventLocation" name="location" ngModel required>
-          <option *ngFor="let location of eventLocations" [value]="location">
-            {{ location }}
-          </option>
+        <select class="form-select" [(ngModel)]="selectedLocation" name="location" id="eventLocation"
+                (change)="onLocationChange()" required>
+          <option value="" disabled selected>Seleccione una ciudad</option>
+          <option *ngFor="let location of eventLocations" [value]="location">{{ location }}</option>
         </select>
       </div>
 
-      <!-- Fecha de Inicio -->
+      <!-- Sub-locación (dependiente de la ciudad seleccionada) -->
+      <div class="mb-3" *ngIf="selectedLocation">
+        <label for="eventSubLocation" class="col-form-label fw-bold">Sub-locación:</label>
+        <select class="form-select" [(ngModel)]="selectedSubLocation" name="subLocation" id="eventSubLocation" required>
+          <option value="" disabled selected>Seleccione una sub-locación</option>
+          <option *ngFor="let subLocation of availableSubLocations" [value]="subLocation">{{ subLocation }}</option>
+        </select>
+      </div>
+
       <div class="mb-3">
         <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
         <input type="date" class="form-control" id="eventStartDate" name="startDate" ngModel required>
