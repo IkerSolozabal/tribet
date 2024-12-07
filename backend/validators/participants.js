@@ -1,7 +1,7 @@
-const { check } = require("express-validator");
+const {check} = require("express-validator");
 const validateResults = require("../utils/handlerValidator.js")
 
-const isTeam = (value, { req }) => {
+const isTeam = (value, {req}) => {
     return !req.body.isTeam
 };
 
@@ -24,4 +24,4 @@ const validatorGetItem = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorCreateItem, validatorGetItem }
+module.exports = {validatorCreateItem, validatorGetItem}

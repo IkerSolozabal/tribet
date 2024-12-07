@@ -1,8 +1,8 @@
-const { betModel, winnerBetModel, usersModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError')
-const { matchedData } = require("express-validator");
-const { BetProposalTypeEnum } = require("../models/enums");
-const { populateWinnerBet } = require("../controllers/winnerBets");
+const {betModel, winnerBetModel, usersModel} = require('../models');
+const {handleHttpError} = require('../utils/handleError')
+const {matchedData} = require("express-validator");
+const {BetProposalTypeEnum} = require("../models/enums");
+const {populateWinnerBet} = require("../controllers/winnerBets");
 
 // get a list of all items.
 const getItems = async (req, res) => {
@@ -22,7 +22,7 @@ const getItems = async (req, res) => {
             data = await getAllItems()
         }
 
-        res.send({ data })
+        res.send({data})
 
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCHING_BETS', 500, e);
@@ -43,9 +43,9 @@ const getItemsForUser = async (id) => {
 const getItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
+        const {id} = req;
         const data = await betModel.findById(id);
-        data ? res.send({ data }) : res.status(404).send({ data })
+        data ? res.send({data}) : res.status(404).send({data})
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCHING_BET', 500, e);
     }
@@ -58,7 +58,7 @@ const createItem = async (req, res) => {
         const idString = user._id.toString(); // Suponiendo que el ObjectId está en req.body._id
         req = matchedData(req)
 
-        const { betProposal, betType } = req;
+        const {betProposal, betType} = req;
         console.log(betProposal)
 
         const odds = await getBetOptionOdds(betProposal, betType)
@@ -110,13 +110,13 @@ const checkBalance = (req, user) => {
 const deleteItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
+        const {id} = req;
         console.log(id)
         const data = await betModel.deleteOne({
             _id: id
         });
 
-        res.send({ data })
+        res.send({data})
 
     } catch (e) {
         return handleHttpError(res, 'ERROR_DELETE_BET_BY_ID', 500, e);
@@ -126,11 +126,11 @@ const deleteItem = async (req, res) => {
 // update an existing item.
 const updateItem = async (req, res) => {
     try {
-        const { id, ...body } = matchedData(req)
-        const filtro = { _id: id }
+        const {id, ...body} = matchedData(req)
+        const filtro = {_id: id}
         const data = await betModel.findOneAndUpdate(filtro, body);
         console.log(data)
-        data ? res.send({ data }) : res.status(404).send({ data })
+        data ? res.send({data}) : res.status(404).send({data})
     } catch (e) {
         return handleHttpError(res, 'ERROR_UPDATE_BET_BY_ID', 500, e);
     }
@@ -139,7 +139,7 @@ const updateItem = async (req, res) => {
 // update an existing item.
 const getAccountBets = async (req, res) => {
     try {
-        const { user } = req;
+        const {user} = req;
         console.log(user)
         const accountId = user._id.toString();
 
@@ -147,19 +147,19 @@ const getAccountBets = async (req, res) => {
         filter.user = accountId;
 
         const winnerBets = await betModel.find(filter)
-        .populate('betProposal')
+            .populate('betProposal')
             .populate({
                 path: 'user',
                 select: 'name' // Solo incluye el campo 'nombre'
             })
-            
-            const bets = [...winnerBets];
+
+        const bets = [...winnerBets];
         //const bets = {...winnerBets, ...users}
-            
+
         res.send({bets})
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCH_BETS', 500, e);
     }
 };
 
-module.exports = { getItems, getItem, createItem, updateItem, deleteItem, getAccountBets }
+module.exports = {getItems, getItem, createItem, updateItem, deleteItem, getAccountBets}

@@ -8,4 +8,4 @@ const check = async (plainPassword, hash) => {
     return await bcryptjs.compare(plainPassword, hash);
 }
 
-module.exports = { encrypt, check }
+module.exports = {encrypt, check}

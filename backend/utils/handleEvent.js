@@ -17,7 +17,7 @@ const setWinner = (event, winner) => {
 };
 
 const checkBets = async (eventId, winner) => {
-    const betOptions = await betOptionsModel.find({ event: eventId });
+    const betOptions = await betOptionsModel.find({event: eventId});
 
     for (const betOption of betOptions) {
         // Comprobar que el tipo de apuesta sea "winner"
@@ -27,7 +27,7 @@ const checkBets = async (eventId, winner) => {
         const betOptionIdString = betOptionId.toString();
 
 
-        const bets = await betModel.find({ betOption: betOptionIdString });
+        const bets = await betModel.find({betOption: betOptionIdString});
 
         // Comprobamos el tipo de apuesta y actualizamos el estado de cada apuesta
         bets.forEach(async (bet) => {
@@ -61,11 +61,4 @@ const checkBets = async (eventId, winner) => {
 }
 
 
-
-
-
-
-
-
-
-module.exports = { setStatus, setWinner, Status, checkBets };
+module.exports = {setStatus, setWinner, Status, checkBets};

@@ -1,11 +1,11 @@
-const { participantModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError')
-const { matchedData } = require("express-validator");
+const {participantModel} = require('../models');
+const {handleHttpError} = require('../utils/handleError')
+const {matchedData} = require("express-validator");
 
 // get a list of all items.
 const getItems = async (req, res) => {
     try {
-        const { isTeam } = req.query;
+        const {isTeam} = req.query;
 
         // Crea un objeto de filtro basado en los parámetros de consulta
         const filter = {};
@@ -19,10 +19,10 @@ const getItems = async (req, res) => {
         const data = await participantModel.find(filter).populate({
             path: 'team',
             select: 'name' // Solo incluye el campo 'nombre'
-          });
+        });
 
         // Responde con los datos obtenidos
-        res.send({ data });
+        res.send({data});
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCHING_PARTICIPANTS', 500, e);
     }
@@ -32,7 +32,7 @@ const getItems = async (req, res) => {
 const getItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
+        const {id} = req;
 
         // Buscar el participante por ID
         const data = await participantModel.findById(id);
@@ -47,7 +47,7 @@ const getItem = async (req, res) => {
 
         // Si el participante es un equipo, poblar los miembros del equipo
         if (data.isTeam) {
-            const participants = await participantModel.find({ team: id }).select('name');
+            const participants = await participantModel.find({team: id}).select('name');
             response.players = participants
         }
         res.status(200).send(response);
@@ -61,7 +61,7 @@ const createItem = async (req, res) => {
     try {
         req = matchedData(req)
         const newEvent = await participantModel.create(req)
-        res.status(201).send({ newEvent });
+        res.status(201).send({newEvent});
     } catch (e) {
         return handleHttpError(res, 'ERROR_CREATE_PARTICIPANT', 500, e);
     }
@@ -71,13 +71,13 @@ const createItem = async (req, res) => {
 const deleteItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
+        const {id} = req;
         console.log(id)
         const data = await participantModel.deleteOne({
             _id: id
         });
 
-        res.send({ data })
+        res.send({data})
     } catch (e) {
         return handleHttpError(res, 'ERROR_DELETE_PARTICIPANT_BY_ID', 500, e);
     }
@@ -86,10 +86,10 @@ const deleteItem = async (req, res) => {
 // update an existing item.
 const updateItem = async (req, res) => {
     try {
-        const { id, ...body } = matchedData(req)
-        const filtro = { _id: id }
+        const {id, ...body} = matchedData(req)
+        const filtro = {_id: id}
         const data = await participantModel.findOneAndUpdate(filtro, body);
-        data ? res.send({ data }) : res.status(404).send({ data })
+        data ? res.send({data}) : res.status(404).send({data})
     } catch (e) {
         const errorDetails = err.array()
         return handleHttpError(res, 'ERROR_UPDATE_PARTICIPANT_BY_ID', 500, e);
@@ -97,4 +97,4 @@ const updateItem = async (req, res) => {
 };
 
 
-module.exports = { getItems, getItem, createItem, updateItem, deleteItem }
+module.exports = {getItems, getItem, createItem, updateItem, deleteItem}

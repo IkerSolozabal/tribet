@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { UserBetStatusEnum, BetProposalTypeEnum } = require("../enums");
+const {UserBetStatusEnum, BetProposalTypeEnum} = require("../enums");
 
 const BetSchema = new mongoose.Schema(
     {

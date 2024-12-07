@@ -1,10 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const { getItems, getItem, createItem, updateItem, deleteItem, addParticipants, addParticipantsToResult} = require("../controllers/results")
-const { validatorCreateItem, validatorGetItem } = require("../validators/results")
-const { authMiddleware } = require("../middlewares/session")
-const { checkRole } = require("../middlewares/role");
-const { UserRolesEnum } = require("../models/enums");
+const {
+    getItems,
+    getItem,
+    createItem,
+    updateItem,
+    deleteItem,
+    addParticipants,
+    addParticipantsToResult
+} = require("../controllers/results")
+const {validatorCreateItem, validatorGetItem} = require("../validators/results")
+const {authMiddleware} = require("../middlewares/session")
+const {checkRole} = require("../middlewares/role");
+const {UserRolesEnum} = require("../models/enums");
 
 
 router.get("/", authMiddleware, checkRole([UserRolesEnum.USER]), getItems)

@@ -1,14 +1,14 @@
-const { resultModel, participantModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError')
-const { matchedData } = require("express-validator");
-const { ResultStatusEnum } = require("../models/enums");
-const { createWinnerBet } = require('../controllers/winnerBets');
+const {resultModel, participantModel} = require('../models');
+const {handleHttpError} = require('../utils/handleError')
+const {matchedData} = require("express-validator");
+const {ResultStatusEnum} = require("../models/enums");
+const {createWinnerBet} = require('../controllers/winnerBets');
 
 
 // Función para crear un resultado o actualizarlo con nuevos participantes
 const createResult = async (eventId, res) => {
     try {
-        return await resultModel.create({ event: eventId })
+        return await resultModel.create({event: eventId})
     } catch (error) {
         return handleHttpError(res, 'ERROR_CREATE_RESULT', 500, error);
     }
@@ -36,7 +36,7 @@ const getItems = async (eventId, res) => {
 
 const diableResult = async (eventId, res) => {
     try {
-        const result = await resultModel.findOne({ event: eventId });
+        const result = await resultModel.findOne({event: eventId});
         if (result) {
             result.status = ResultStatusEnum.CLOSED; // Actualizas el campo 'status' a 'CLOSED'
             await result.save(); // Guardas el cambio en la base de datos
@@ -61,7 +61,7 @@ const createItem = async (req, res) => {
 const addParticipants = async (req, res) => {
     try {
         req = matchedData(req);
-        const { resultId } = req;
+        const {resultId} = req;
         const existingResult = await resultModel.findById(resultId).populate('participants');
         if (existingResult) {
             if (existingResult.status != ResultStatusEnum.OPEN) {
@@ -80,8 +80,8 @@ const addParticipants = async (req, res) => {
 
 async function addParticipantsToResult(req, res) {
     try {
-        const { resultId } = req.params;
-        const { participants: newParticipants } = req.body;
+        const {resultId} = req.params;
+        const {participants: newParticipants} = req.body;
 
         // Verifica si el resultado está abierto
         const result = await resultModel.findById(resultId);
@@ -98,7 +98,7 @@ async function addParticipantsToResult(req, res) {
 
         // Verifica que cada ID pertenezca a un participante existente
         const validParticipants = await participantModel.find({
-            _id: { $in: uniqueParticipantIds }
+            _id: {$in: uniqueParticipantIds}
         }).select('_id');
 
         const validParticipantIds = validParticipants.map(p => p._id.toString());
@@ -114,11 +114,11 @@ async function addParticipantsToResult(req, res) {
                 {
                     $addToSet: {
                         participants: {
-                            $each: newUniqueParticipantIds.map(id => ({ participantId: id }))
+                            $each: newUniqueParticipantIds.map(id => ({participantId: id}))
                         }
                     }
                 },
-                { new: true }
+                {new: true}
             ).populate({
                 path: 'participants.participantId',
                 select: 'name' // Solo incluye el campo 'nombre'
@@ -131,14 +131,14 @@ async function addParticipantsToResult(req, res) {
 
             return res.status(200).json(updatedResult);
         } else {
-            return res.status(200).json({ message: 'No new participants added' });
+            return res.status(200).json({message: 'No new participants added'});
         }
 
     } catch (error) {
         console.error('Error al agregar participantes:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({error: 'Internal server error'});
     }
 }
 
 
-module.exports = { createItem, createResult, addParticipants, diableResult, addParticipantsToResult, getItems }
+module.exports = {createItem, createResult, addParticipants, diableResult, addParticipantsToResult, getItems}

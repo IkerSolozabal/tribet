@@ -1,17 +1,17 @@
-const { eventModel, betModel, betOptionsModel, usersModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError')
-const { matchedData } = require("express-validator");
-const { setStatus, setWinner, Status, checkBets } = require("../utils/handleEvent");
-const { EventStatusEnum } = require("../models/enums");
-const { createResult, diableResult } = require('../controllers/results');
+const {eventModel, betModel, betOptionsModel, usersModel} = require('../models');
+const {handleHttpError} = require('../utils/handleError')
+const {matchedData} = require("express-validator");
+const {setStatus, setWinner, Status, checkBets} = require("../utils/handleEvent");
+const {EventStatusEnum} = require("../models/enums");
+const {createResult, diableResult} = require('../controllers/results');
 
 // get a list of all items.
 const getEvents = async (req, res) => {
     try {
         const allowedStatus = [Object.values(EventStatusEnum)];
 
-        const { status } = req.query;
-        const { city } = req.query;
+        const {status} = req.query;
+        const {city} = req.query;
 
         // Crea un objeto de filtro basado en los parámetros de consulta
         const filter = {};
@@ -32,7 +32,7 @@ const getEvents = async (req, res) => {
         const events = await eventModel.find(filter);
 
         // Responde con los datos obtenidos
-        res.send({ events });
+        res.send({events});
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCHING_EVENTS', 500, e);
     }
@@ -42,9 +42,9 @@ const getEvents = async (req, res) => {
 const getItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
+        const {id} = req;
         const event = await eventModel.findById(id);
-        event ? res.send({ event }) : res.status(404).send({ event })
+        event ? res.send({event}) : res.status(404).send({event})
     } catch (e) {
         return handleHttpError(res, 'ERROR_FETCHING_EVENT', 500, e);
     }
@@ -61,7 +61,7 @@ const createItem = async (req, res) => {
         const eventId = event._id.toString()
         const result = await createResult(eventId, res);
 
-        res.status(201).send({ event, result });
+        res.status(201).send({event, result});
     } catch (e) {
         return handleHttpError(res, 'ERROR_CREATE_EVENT', 500, e);
     }
@@ -71,10 +71,10 @@ const createItem = async (req, res) => {
 const deleteItem = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req;
-        const event = await eventModel.deleteOne({ _id: id });
+        const {id} = req;
+        const event = await eventModel.deleteOne({_id: id});
         await diableResult(id, res)
-        res.send({ event })
+        res.send({event})
     } catch (e) {
         return handleHttpError(res, 'ERROR_DELETE_EVENT_BY_ID', 500, e);
     }
@@ -83,10 +83,10 @@ const deleteItem = async (req, res) => {
 // update an existing item.
 const updateItem = async (req, res) => {
     try {
-        const { id, ...body } = matchedData(req)
-        const filtro = { _id: id }
+        const {id, ...body} = matchedData(req)
+        const filtro = {_id: id}
         const data = await eventModel.findOneAndUpdate(filtro, body);
-        data ? res.send({ data }) : res.status(404).send({ data })
+        data ? res.send({data}) : res.status(404).send({data})
     } catch (e) {
         return handleHttpError(res, 'ERROR_UPDATE_EVENT_BY_ID', 500, e);
     }
@@ -96,8 +96,8 @@ const updateItem = async (req, res) => {
 const addEventResult = async (req, res) => {
     try {
         req = matchedData(req);
-        const { id } = req; // ID del evento desde la URL
-        const { winner } = req; // Obtener el ganador y la posición del cuerpo de la solicitud
+        const {id} = req; // ID del evento desde la URL
+        const {winner} = req; // Obtener el ganador y la posición del cuerpo de la solicitud
 
         // Buscar el evento por ID
         const event = await eventModel.findById(id);
@@ -121,11 +121,11 @@ const addEventResult = async (req, res) => {
         // Paso 4: Comprobar todas las apuestas para el evento
 
 
-        res.status(200).json({ message: 'Event result updated successfully', event });
+        res.status(200).json({message: 'Event result updated successfully', event});
     } catch (error) {
         return handleHttpError(res, 'ERROR_UPDATE_RESULT_EVENT_BY_ID', 500, e);
     }
 };
 
 
-module.exports = { getItems: getEvents, getItem, createItem, updateItem, deleteItem, addEventResult }
+module.exports = {getItems: getEvents, getItem, createItem, updateItem, deleteItem, addEventResult}

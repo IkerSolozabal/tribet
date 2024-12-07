@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { ResultStatusEnum } = require("../enums");
+const {ResultStatusEnum} = require("../enums");
 
 const ResultSchema = new mongoose.Schema(
     {

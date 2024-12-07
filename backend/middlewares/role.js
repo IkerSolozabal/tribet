@@ -1,9 +1,8 @@
-const { handleHttpError } = require("../utils/handleError");
-
+const {handleHttpError} = require("../utils/handleError");
 
 const checkRole = (permittedRoles) => (req, res, next) => {
     try {
-        const { user } = req;
+        const {user} = req;
 
         if (!user || !user.role) {
             return handleHttpError(res, "USER_NOT_AUTHORIZED", 401);

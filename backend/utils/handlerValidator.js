@@ -1,5 +1,5 @@
-const { validationResult } = require("express-validator")
-const { handleHttpError } = require('../utils/handleError')
+const {validationResult} = require("express-validator")
+const {handleHttpError} = require('../utils/handleError')
 
 const validateResults = (req, res, next) => {
     try {

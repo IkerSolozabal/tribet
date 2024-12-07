@@ -1,5 +1,5 @@
 require("dotenv").config()
-const { printLogs } = require("./utils/handleLogs");
+const {printLogs} = require("./utils/handleLogs");
 const express = require("express")
 const cors = require("cors")
 const app = express()

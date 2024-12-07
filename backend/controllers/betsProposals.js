@@ -1,7 +1,7 @@
-const { participantModel, winnerBetModel } = require('../models');
-const { handleHttpError } = require('../utils/handleError')
-const { matchedData } = require("express-validator");
-const { getWinnerBets, getWinnerBetsForEvent } = require('../controllers/winnerBets');
+const {participantModel, winnerBetModel} = require('../models');
+const {handleHttpError} = require('../utils/handleError')
+const {matchedData} = require("express-validator");
+const {getWinnerBets, getWinnerBetsForEvent} = require('../controllers/winnerBets');
 
 // get a list of all items.
 const getBetsProprosals = async (req, res) => {
@@ -20,12 +20,11 @@ const getBetsProprosals = async (req, res) => {
 };
 
 
-
 // Devuelve todas las betOptions para un Id de evento
 const getBetsProprosalsForEventId = async (req, res) => {
     try {
         req = matchedData(req);
-        const { eventId } = req;
+        const {eventId} = req;
 
         const winnerBets = await getWinnerBetsForEvent(req, res, eventId)
 
@@ -41,4 +40,4 @@ const getBetsProprosalsForEventId = async (req, res) => {
     }
 };
 
-module.exports = { getBetsProprosals, getBetsProprosalsForEventId }
+module.exports = {getBetsProprosals, getBetsProprosalsForEventId}

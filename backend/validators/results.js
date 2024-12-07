@@ -1,12 +1,12 @@
-const { check } = require("express-validator");
+const {check} = require("express-validator");
 const validateResults = require("../utils/handlerValidator.js")
 
 const filterParticipants = (req) => {
-    const { participants } = matchedData(req); // Obtenemos los datos ya validados
+    const {participants} = matchedData(req); // Obtenemos los datos ya validados
 
     // Recorremos cada participante y mantenemos solo el campo `name`
     const filteredParticipants = participants.map(participant => {
-        return { name: participant.name };  // Solo conservamos el nombre
+        return {name: participant.name};  // Solo conservamos el nombre
     });
 
     // Modificamos el req para solo incluir los participantes filtrados
@@ -41,4 +41,4 @@ const validatorGetItem = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorCreateItem, validatorGetItem}
+module.exports = {validatorCreateItem, validatorGetItem}

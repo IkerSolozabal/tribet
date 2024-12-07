@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { EventTagsEnum, EventStatusEnum } = require("../enums");
+const {EventTagsEnum, EventStatusEnum} = require("../enums");
 
 const EventSchema = new mongoose.Schema(
     {

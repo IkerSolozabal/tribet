@@ -1,6 +1,6 @@
-const { check } = require("express-validator");
+const {check} = require("express-validator");
 const validateResults = require("../utils/handlerValidator.js")
-const { UserRolesEnum } = require("../models/enums.js");
+const {UserRolesEnum} = require("../models/enums.js");
 
 const validatorCreateUser = [
     check("email")
@@ -28,4 +28,4 @@ const validatorGetUser = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorCreateUser, validatorGetUser }
+module.exports = {validatorCreateUser, validatorGetUser}

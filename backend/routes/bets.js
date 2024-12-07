@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { getItems, getItem, createItem, updateItem, deleteItem } = require("../controllers/bets")
-const { validatorCreateItem, validatorGetItem } = require("../validators/bets")
-const { checkRole } = require("../middlewares/role");
-const { authMiddleware } = require("../middlewares/session")
+const {getItems, getItem, createItem, updateItem, deleteItem} = require("../controllers/bets")
+const {validatorCreateItem, validatorGetItem} = require("../validators/bets")
+const {checkRole} = require("../middlewares/role");
+const {authMiddleware} = require("../middlewares/session")
 
 router.get("/", authMiddleware, getItems)
 router.get("/:id", validatorGetItem, getItem)

@@ -45,4 +45,12 @@ const EventTagsEnum = Object.freeze({
     CTO_MAD: 'cto_mad',
 });
 
-module.exports = { UserRolesEnum, EventTagsEnum, EventStatusEnum, BetProposalStatusEnum, BetProposalTypeEnum, UserBetStatusEnum, ResultStatusEnum};
+module.exports = {
+    UserRolesEnum,
+    EventTagsEnum,
+    EventStatusEnum,
+    BetProposalStatusEnum,
+    BetProposalTypeEnum,
+    UserBetStatusEnum,
+    ResultStatusEnum
+};

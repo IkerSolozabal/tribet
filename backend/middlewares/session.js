@@ -1,6 +1,6 @@
-const { verifyToken } = require("../utils/handleJwt");
-const { usersModel } = require('../models');
-const { handleHttpError } = require("../utils/handleError");
+const {verifyToken} = require("../utils/handleJwt");
+const {usersModel} = require('../models');
+const {handleHttpError} = require("../utils/handleError");
 
 // Middleware function for authentication
 const authMiddleware = async (req, res, next) => {
@@ -42,4 +42,4 @@ const authMiddleware = async (req, res, next) => {
 }
 
 
-module.exports = { authMiddleware }
+module.exports = {authMiddleware}

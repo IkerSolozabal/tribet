@@ -1,6 +1,6 @@
-const { check } = require("express-validator");
+const {check} = require("express-validator");
 const validateResults = require("../utils/handlerValidator.js")
-const { EventTagsEnum, EventStatusEnum } = require("../models/enums.js");
+const {EventTagsEnum, EventStatusEnum} = require("../models/enums.js");
 
 const isFutureDate = (value) => {
     const startDate = new Date(value);
@@ -31,4 +31,4 @@ const validatorGetEvent = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = { validatorCreateEvent, validatorGetEvent }
+module.exports = {validatorCreateEvent, validatorGetEvent}

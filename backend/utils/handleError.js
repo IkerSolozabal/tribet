@@ -1,4 +1,4 @@
-const { printLogs } = require("../utils/handleLogs");
+const {printLogs} = require("../utils/handleLogs");
 
 const handleHttpError = (res, error = 'DEFAULT_ERROR', code = 500, description = undefined) => {
     const isPreEnvironment = process.env.NODE_ENV === 'pre';
@@ -19,4 +19,4 @@ const handleHttpError = (res, error = 'DEFAULT_ERROR', code = 500, description =
     return res.status(code).send(response);
 }
 
-module.exports = { handleHttpError };
+module.exports = {handleHttpError};
