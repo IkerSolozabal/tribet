@@ -1,0 +1,96 @@
+<!-- Create Event Page -->
+<div class="container mt-5">
+  <h2 class="mb-4">Editar Evento</h2>
+
+  <!-- Formulario para crear evento -->
+  <form (ngSubmit)="onSubmit(updateEventForm)" #updateEventForm="ngForm">
+    <div class="card shadow-sm rounded p-4">
+      <!-- Nombre del Evento -->
+      <div class="mb-3">
+        <label for="eventName" class="col-form-label fw-bold">Nombre del Evento:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="eventName"
+          name="name"
+          [(ngModel)]="event.name"
+          required
+        />
+      </div>
+
+      <!-- Ubicación -->
+      <div class="mb-3">
+        <label for="eventLocation" class="col-form-label fw-bold">Ubicación:</label>
+        <select
+          class="form-select"
+          [(ngModel)]="event.location.city"
+          name="location"
+          id="eventLocation"
+          (change)="onLocationChange()"
+          required
+        >
+          <option value="">Seleccione una ciudad</option>
+          <option *ngFor="let location of eventLocations" [value]="location">{{ location }}</option>
+        </select>
+      </div>
+
+      <!-- Sub-locación -->
+      <div class="mb-3" *ngIf="event.location.city">
+        <label for="eventSubLocation" class="col-form-label fw-bold">Sub-locación:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="eventSubLocation"
+          name="subLocation"
+          [(ngModel)]="event.location.venue"
+          readonly
+        />
+      </div>
+
+      <!-- Fecha de Inicio -->
+      <div class="mb-3">
+        <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="eventStartDate"
+          name="startDate"
+          [(ngModel)]="event.startDate"
+          [ngModelOptions]="{ standalone: true }"
+          required
+        />
+      </div>
+
+      <!-- Tags -->
+      <div class="mb-3">
+        <label for="eventTags" class="col-form-label fw-bold">Tags:</label>
+        <div class="input-group">
+          <select
+            class="form-select"
+            [(ngModel)]="newTag"
+            name="tags"
+            (change)="addTag()"
+            id="eventTags"
+          >
+            <option value="" disabled>Seleccione un tag</option>
+            <option *ngFor="let tag of eventTagsEmun | keyvalue" [value]="tag.value">
+              {{ tag.value }}
+            </option>
+          </select>
+        </div>
+        <div class="mt-2">
+          <span *ngFor="let tag of event.tags; let i = index" class="badge bg-secondary me-2">
+            {{ tag }}
+            <button type="button" class="btn btn-danger btn-sm ms-2" (click)="removeTag(i)">x</button>
+          </span>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="cancelForm()">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </form>
+</div>
