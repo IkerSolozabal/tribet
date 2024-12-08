@@ -7,7 +7,7 @@ const {checkRole} = require("../middlewares/role");
 const {UserRolesEnum} = require("../models/enums");
 
 router.get("/", authMiddleware, checkRole([UserRolesEnum.USER, UserRolesEnum.ADMIN]), getEvents)
-router.get("/:eventId", validatorCreateEvent, authMiddleware, checkRole([UserRolesEnum.USER, UserRolesEnum.ADMIN]), getEventById)
+router.get("/:eventId", validatorGetEvent, authMiddleware, checkRole([UserRolesEnum.USER, UserRolesEnum.ADMIN]), getEventById)
 router.post("/", validatorCreateEvent, createEvent)
 router.put("/:eventId", validatorCreateEvent, validatorGetEvent, authMiddleware, checkRole([UserRolesEnum.ADMIN]), updateEventById)
 router.delete("/:eventId", validatorGetEvent, authMiddleware, checkRole([UserRolesEnum.USER]), deleteEventById)
