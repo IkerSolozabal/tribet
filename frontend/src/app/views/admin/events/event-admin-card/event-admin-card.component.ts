@@ -1,8 +1,9 @@
-import {Component, input, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
 import {EventService} from '../../../../shared/services/event/event.service';
-import {EventLocations, EventStatusEnum} from '../../../../shared/emuns/endpoints.enum';
-import {FormsModule} from '@angular/forms'; //
+import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {EventStatusEnum} from '../../../../shared/emuns/endpoints.enum'; //
 
 
 @Component({
@@ -18,20 +19,13 @@ import {FormsModule} from '@angular/forms'; //
 })
 export class EventAdminCardComponent {
   @Input() event: any;
-  eventLocations: string[] = Object.values(EventLocations) as string[];
-  eventStatusEnum: string[] = Object.values(EventStatusEnum) as string[];
 
-  constructor(private eventService: EventService) {
+  constructor(private eventService: EventService, private router: Router) {
   }
 
-  selectEvent(event: any) {
-    this.eventService.setSelectedEvent(event);
-    console.log('EVENT', event)
+  editEvent() {
+    this.router.navigate([`/admin/events/${this.event._id}`]);
   }
 
-  get selectedEvent() {
-    return this.eventService.getSelectedEvent()
-  }
-
-  protected readonly EventLocations = EventLocations;
+  protected readonly EventStatusEnum = EventStatusEnum;
 }
