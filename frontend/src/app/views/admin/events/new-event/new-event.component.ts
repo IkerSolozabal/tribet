@@ -55,11 +55,18 @@ export class NewEventComponent {
     this.tags.splice(index, 1);
   }
 
+  getStartDateTime(form: any) {
+    const startDate = form.value.startDate; // Obtiene la fecha
+    const startTime = form.value.startTime; // Obtiene la hora
+    // Combina fecha y hora en un objeto Date
+    return new Date(`${startDate}T${startTime}`);
+  }
 
   onSubmit(form: any) {
+
     this.restService.post(Endpoints.EVENTS, {
       name: form.value.name,
-      startDate: form.value.startDate || undefined,
+      startDate: this.getStartDateTime(form) || undefined,
       location: {
         city: this.selectedLocation || undefined,
         venue: this.selectedSubLocation || undefined

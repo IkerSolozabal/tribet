@@ -18,7 +18,8 @@
     >
       {{ event.status }}
     </button>
-    <p class="card-text mb-0">{{ event.startDate | date:'fullDate' }}</p>
+    <p class="card-text mb-0">{{ event.startDate | date:'fullDate' }} - {{ event.startDate | date:'HH:mm' }}</p>
+
   </div>
 
   <div class="mb-3">

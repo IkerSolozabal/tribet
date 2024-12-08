@@ -30,10 +30,20 @@
         </select>
       </div>
 
-      <div class="mb-3">
-        <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
-        <input type="date" class="form-control" id="eventStartDate" name="startDate" ngModel required>
+      <div class="row mb-3">
+        <!-- Campo de Fecha -->
+        <div class="col-md-6">
+          <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
+          <input type="date" class="form-control" id="eventStartDate" name="startDate" ngModel required>
+        </div>
+
+        <!-- Campo de Hora -->
+        <div class="col-md-6">
+          <label for="eventStartTime" class="col-form-label fw-bold">Hora de Inicio:</label>
+          <input type="time" class="form-control" id="eventStartTime" name="startTime" ngModel required>
+        </div>
       </div>
+
 
       <!-- Tags -->
       <div class="mb-3">
