@@ -13,9 +13,7 @@
       [ngClass]="{
     'btn-success': event.status === EventStatusEnum.SCHEDULED,
     'btn-warning': event.status === EventStatusEnum.IN_PROGRESS,
-    'btn-danger': event.status === EventStatusEnum.FINISHED
-    'btn-danger': event.status === EventStatusEnum.CANCEL
-
+    'btn-danger': event.status === EventStatusEnum.FINISHED || event.status === EventStatusEnum.CANCEL
   }"
     >
       {{ event.status }}
