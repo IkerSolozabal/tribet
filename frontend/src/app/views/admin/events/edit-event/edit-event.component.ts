@@ -29,6 +29,8 @@ export class EditEventComponent implements OnInit {
   availableSubLocations: any[] = [];
   selectedLocation: any = null;
   selectedSubLocation: any = null;
+  formattedDate: string = '';
+  formattedTime: string = '';
 
   constructor(private restService: RestService, private route: ActivatedRoute, private router: Router) {
   }
@@ -49,8 +51,13 @@ export class EditEventComponent implements OnInit {
       if (res) {
         const response = res as any;
         const event = response.event
+        console.log('EVENT', event)
         this.event = event
         this.tags = event.tags
+        this.selectedLocation = event.location.city
+        this.selectedSubLocation = event.location.venue
+        this.onLocationChange();
+        this.initializeDateAndTime();
       }
     });
   }
@@ -83,30 +90,52 @@ export class EditEventComponent implements OnInit {
     this.tags.splice(index, 1);
   }
 
+  initializeDateAndTime() {
+    const date = new Date(this.event.startDate);
+    this.formattedDate = date.toISOString().split('T')[0]; // Extraer fecha (YYYY-MM-DD)
+    this.formattedTime = date.toTimeString().split(' ')[0].slice(0, 5); // Extraer hora (HH:mm)
+  }
+
+  onDateChange(newDate: string) {
+    // Combinar nueva fecha con la hora existente
+    this.formattedDate = newDate
+  }
+
+  onTimeChange(newTime: string) {
+    // Combinar nueva hora con la fecha existente
+    this.formattedTime = newTime
+  }
+
+  getStartDateTime(form: any) {
+    const startDate = this.formattedDate; // Obtiene la fecha
+    const startTime = this.formattedTime; // Obtiene la hora
+    // Combina fecha y hora en un objeto Date
+    return new Date(`${startDate}T${startTime}`);
+  }
 
   onSubmit(form: any) {
-    // this.restService.post(Endpoints.EVENTS, {
-    //   name: form.value.name,
-    //   startDate: form.value.startDate || undefined,
-    //   location: {
-    //     city: this.selectedLocation || undefined,
-    //     venue: this.selectedSubLocation || undefined
-    //   },
-    //   tags: this.tags.length > 0 ? this.tags : undefined
-    // }).pipe(
-    //   catchError(error => {
-    //     console.error('Error al crear el evento:', error);
-    //
-    //     alert(error.error.error);
-    //
-    //     return of(null);
-    //   })
-    // ).subscribe(res => {
-    //   if (res) {
-    //     console.log("Evento", res);
-    //     this.router.navigate(['/admin/events']);
-    //   }
-    // });
+    this.restService.put(`${Endpoints.EVENTS}/${this.eventId}`, {
+      name: form.value.name,
+      startDate: this.getStartDateTime(form) || undefined,
+      location: {
+        city: this.selectedLocation || undefined,
+        venue: this.selectedSubLocation || undefined
+      },
+      tags: this.tags.length > 0 ? this.tags : []
+    }).pipe(
+      catchError(error => {
+        console.error('Error al crear el evento:', error);
+
+        alert(error.error.error);
+
+        return of(null);
+      })
+    ).subscribe(res => {
+      if (res) {
+        console.log("Evento actualizado", res);
+        this.router.navigate(['/admin/events']);
+      }
+    });
   }
 
 // Método para cancelar el formulario

@@ -21,45 +21,54 @@
       <!-- Ubicación -->
       <div class="mb-3">
         <label for="eventLocation" class="col-form-label fw-bold">Ubicación:</label>
-        <select
-          class="form-select"
-          [(ngModel)]="event.location.city"
-          name="location"
-          id="eventLocation"
-          (change)="onLocationChange()"
-          required
-        >
+        <select class="form-select" [(ngModel)]="selectedLocation" name="location" id="eventLocation"
+                (change)="onLocationChange()" required>
           <option value="">Seleccione una ciudad</option>
           <option *ngFor="let location of eventLocations" [value]="location">{{ location }}</option>
         </select>
       </div>
 
       <!-- Sub-locación -->
-      <div class="mb-3" *ngIf="event.location.city">
+      <div class="mb-3" *ngIf="event.location.venue">
         <label for="eventSubLocation" class="col-form-label fw-bold">Sub-locación:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="eventSubLocation"
-          name="subLocation"
-          [(ngModel)]="event.location.venue"
-          readonly
-        />
+        <select class="form-select" [(ngModel)]="selectedSubLocation" name="subLocation" id="eventSubLocation" required>
+          <option value="" disabled selected>Seleccione una sub-locación</option>
+          <option *ngFor="let subLocation of availableSubLocations" [value]="subLocation">{{ subLocation }}</option>
+        </select>
       </div>
 
-      <!-- Fecha de Inicio -->
-      <div class="mb-3">
-        <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
-        <input
-          type="date"
-          class="form-control"
-          id="eventStartDate"
-          name="startDate"
-          [(ngModel)]="event.startDate"
-          [ngModelOptions]="{ standalone: true }"
-          required
-        />
+      <div class="row mb-3">
+        <!-- Campo de Fecha -->
+        <div class="col-md-6">
+          <label for="eventStartDate" class="col-form-label fw-bold">Fecha de Inicio:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="eventStartDate"
+            name="startDate"
+            [(ngModel)]="formattedDate"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onDateChange($event)"
+            required
+          />
+        </div>
+
+        <!-- Campo de Hora -->
+        <div class="col-md-6">
+          <label for="eventStartTime" class="col-form-label fw-bold">Hora de Inicio:</label>
+          <input
+            type="time"
+            class="form-control"
+            id="eventStartTime"
+            name="startTime"
+            [(ngModel)]="formattedTime"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onTimeChange($event)"
+            required
+          />
+        </div>
       </div>
+
 
       <!-- Tags -->
       <div class="mb-3">
