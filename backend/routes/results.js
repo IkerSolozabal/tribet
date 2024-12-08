@@ -15,7 +15,7 @@ const {checkRole} = require("../middlewares/role");
 const {UserRolesEnum} = require("../models/enums");
 
 
-router.get("/", authMiddleware, checkRole([UserRolesEnum.USER]), getItems)
+router.get("/", authMiddleware, checkRole([UserRolesEnum.ADMIN]), getItems)
 //router.get("/:id", validatorGetItem, authMiddleware, checkRole([RoleTypeEnum.ADMIN]), getItem)
 //router.post("/", validatorCreateItem, authMiddleware, checkRole([RoleTypeEnum.USER]), createItem)
 router.put("/:resultId", validatorCreateItem, authMiddleware, checkRole([UserRolesEnum.USER]), addParticipantsToResult)

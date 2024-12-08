@@ -1,7 +1,8 @@
 const EventStatusEnum = {
-    SCHEDULED: 'scheduled',
-    IN_PROGRESS: 'in_progress',
-    FINISHED: 'finished'
+    SCHEDULED: 'Programado',
+    IN_PROGRESS: 'En curso',
+    FINISHED: 'Terminado',
+    CANCEl: 'Cancelado'
 };
 
 const BetProposalTypeEnum = Object.freeze({

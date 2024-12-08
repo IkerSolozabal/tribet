@@ -31,9 +31,10 @@ export enum MadridLocations {
 
 
 export const EventStatusEnum = {
-  SCHEDULED: 'scheduled',
-  IN_PROGRESS: 'in_progress',
-  FINISHED: 'finished'
+  SCHEDULED: 'Programado',
+  IN_PROGRESS: 'En curso',
+  FINISHED: 'Terminado',
+  CANCEL: 'Cancelado'
 };
 
 export const EventTagsEmun = {
