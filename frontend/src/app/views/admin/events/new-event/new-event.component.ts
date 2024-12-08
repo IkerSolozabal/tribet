@@ -71,7 +71,7 @@ export class NewEventComponent {
         city: this.selectedLocation || undefined,
         venue: this.selectedSubLocation || undefined
       },
-      tags: this.tags.length > 0 ? this.tags : undefined
+      tags: this.tags.length > 0 ? this.tags : []
     }).pipe(
       catchError(error => {
         console.error('Error al crear el evento:', error);
