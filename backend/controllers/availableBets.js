@@ -4,7 +4,7 @@ const {matchedData} = require("express-validator");
 const {getWinnerBets, getWinnerBetsForEvent} = require('../controllers/winnerBets');
 
 // get a list of all items.
-const getBetsProprosals = async (req, res) => {
+const getAvailableBets = async (req, res) => {
     try {
         const winnerBets = await getWinnerBets(req, res)
         console.log('WINNER BETS', winnerBets)
@@ -21,7 +21,7 @@ const getBetsProprosals = async (req, res) => {
 
 
 // Devuelve todas las betOptions para un Id de evento
-const getBetsProprosalsForEventId = async (req, res) => {
+const getAvailableBetsForEventId = async (req, res) => {
     try {
         req = matchedData(req);
         const {eventId} = req;
@@ -40,4 +40,4 @@ const getBetsProprosalsForEventId = async (req, res) => {
     }
 };
 
-module.exports = {getBetsProprosals, getBetsProprosalsForEventId}
+module.exports = {getAvailableBets, getAvailableBetsForEventId}
