@@ -23,7 +23,7 @@ const getEvents = async (req, res) => {
         }
 
         if (city != undefined) {
-            filter["location.city"] = city;
+            filter["location"] = city;
         }
 
         const events = await eventModel.find(filter);

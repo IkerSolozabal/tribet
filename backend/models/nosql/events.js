@@ -12,12 +12,8 @@ const EventSchema = new mongoose.Schema(
             required: true
         },
         location: {
-            city: {
-                type: String
-            },
-            venue: {
-                type: String
-            }
+            type: String,
+            required: true
         },
         tags: {
             type: [String],
