@@ -1,21 +1,22 @@
-import { RestService } from '../../../shared/services/rest/rest.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CookieHelperService } from '../../../shared/services/cookie/cookie.service';
-import { Endpoints } from '../../../shared/emuns/endpoints.enum';
-import { CommonModule } from '@angular/common';
-import { BetCardComponent } from '../bet-card/bet-card.component';
-import { BetService } from '../../../shared/services/bet/bet.service';
-import {WinnerBetCardComponent} from '../winner-bet-card/winner-bet-card.component';
-
+import { Component } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {CookieHelperService} from '../../../shared/services/cookie/cookie.service';
+import {RestService} from '../../../shared/services/rest/rest.service';
+import {BetService} from '../../../shared/services/bet/bet.service';
+import {Endpoints} from '../../../shared/emuns/endpoints.enum';
+import {WinnerBetsComponent} from '../winner-bets/winner-bets.component';
+import {NgForOf} from '@angular/common';
 @Component({
-  selector: 'app-bet-page',
+  selector: 'app-winner-bet-card',
   standalone: true,
-  imports: [CommonModule, BetCardComponent, WinnerBetCardComponent],
-  templateUrl: './bet-page.component.html',
-  styleUrl: './bet-page.component.css'
+  imports: [
+    NgForOf,
+    WinnerBetsComponent
+  ],
+  templateUrl: './winner-bet-card.component.html',
+  styleUrl: './winner-bet-card.component.css'
 })
-export class BetPageComponent implements OnInit {
+export class WinnerBetCardComponent {
   eventId: string | null = null;
   winnerBets: any[] = [];
 

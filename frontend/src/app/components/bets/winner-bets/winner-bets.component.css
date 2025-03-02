@@ -1,0 +1,29 @@
+.bet-card {
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  text-align: center;
+  min-width: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.participant {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.odds {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilo cuando se selecciona */
+.selected {
+  background: red !important;
+  color: white !important;
+}

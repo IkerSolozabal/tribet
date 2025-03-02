@@ -60,8 +60,8 @@ const getItem = async (req, res) => {
 const createItem = async (req, res) => {
     try {
         req = matchedData(req)
-        const newEvent = await participantModel.create(req)
-        res.status(201).send({newEvent});
+        const participant = await participantModel.create(req)
+        res.status(201).send({participant});
     } catch (e) {
         return handleHttpError(res, 'ERROR_CREATE_PARTICIPANT', 500, e);
     }

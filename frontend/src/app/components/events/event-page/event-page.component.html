@@ -3,7 +3,7 @@
         <app-event-card
           *ngFor="let event of events"
           [eventName]="event.name"
-          [location]="event.location.city"
+          [location]="event.location"
           [status]="event.status"
           [startDate]="event.startDate"
           [eventId]="event._id">

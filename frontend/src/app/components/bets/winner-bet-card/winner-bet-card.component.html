@@ -1,0 +1,10 @@
+<div class="bet-list container mt-5">
+  <h2>GANADOR</h2>
+
+  <div class="bet-slider">
+    <div class="bet-cards">
+      <app-winner-bets  *ngFor="let bet of winnerBets" [bet]="bet">
+      </app-winner-bets >
+    </div>
+  </div>
+</div>

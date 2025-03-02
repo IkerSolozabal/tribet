@@ -13,8 +13,7 @@ const isFutureDate = (value) => {
 const validatorCreateEvent = [
     check("name").exists().notEmpty().withMessage("Event name is required"),
     check("startDate").exists().notEmpty().isISO8601().withMessage("Valid start date is required").custom(isFutureDate),
-    check("location.city").optional().isString().withMessage("City must be a string"),
-    check("location.venue").optional().isString().withMessage("Venue must be a string"),
+    check("location").optional().isString().withMessage("location is required"),
     check("tags")
         .exists().notEmpty()
         .isIn(Object.values(EventTagsEnum))

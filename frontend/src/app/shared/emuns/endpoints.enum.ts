@@ -4,7 +4,7 @@ export enum Endpoints {
   REGISTER = `${Endpoints.BASE_URL}/auth/register`,
   EVENTS = `${Endpoints.BASE_URL}/events`,
   USERS = `${Endpoints.BASE_URL}/users`,
-  BET_PROPOSAL = `${Endpoints.BASE_URL}/betsproprosals`,
+  BET_PROPOSAL = `${Endpoints.BASE_URL}/availablebets`,
   USER_INFO = `${Endpoints.BASE_URL}/account`,
   USER_BETS = `${Endpoints.BASE_URL}/account/bets`,
   PLACE_BET = `${Endpoints.BASE_URL}/bets`

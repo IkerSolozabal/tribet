@@ -59,7 +59,7 @@ export const routes: Routes = [
     path: 'events',
     component: EventPageComponent,
     canActivate: [AuthGuard],
-    data: {roles: [UserRoles.ADMIN]}
+    data: {roles: [UserRoles.USER]}
   },
   {
     path: 'mybets',
