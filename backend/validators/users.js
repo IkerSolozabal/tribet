@@ -16,7 +16,28 @@ const validatorCreateUser = [
     check("role")
         .exists().withMessage("The role field is required.")
         .notEmpty().withMessage("Role cannot be empty.")
-        .isIn(Object.values(UserRolesEnum)),
+        .isIn(Object.values(UserRolesEnum)).withMessage("Must be a valid Role"),
+    (req, res, next) => validateResults(req, res, next)
+];
+
+const validatorUpdateUser = [
+    check("email")
+        .optional()
+        .notEmpty().withMessage("Email cannot be empty.")
+        .isEmail().withMessage("Please provide a valid email address."),
+    check("password")
+        .optional()
+        .notEmpty().withMessage("Password cannot be empty."),
+    check("name")
+        .optional()
+        .notEmpty().withMessage("Name cannot be empty."),
+    check("balance")
+        .optional()
+        .isNumeric().withMessage("Balance has to be numeric"),
+    check("role")
+        .optional()
+        .notEmpty().withMessage("Role cannot be empty.")
+        .isIn(Object.values(UserRolesEnum)).withMessage("Must be a valid Role"),
     (req, res, next) => validateResults(req, res, next)
 ];
 
@@ -28,4 +49,4 @@ const validatorGetUser = [
     (req, res, next) => validateResults(req, res, next)
 ];
 
-module.exports = {validatorCreateUser, validatorGetUser}
+module.exports = {validatorCreateUser, validatorGetUser, validatorUpdateUser}
